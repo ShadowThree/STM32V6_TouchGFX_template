@@ -26,6 +26,7 @@
 #include "i2c.h"
 #include "ltdc.h"
 #include "sdio.h"
+#include "tim.h"
 #include "gpio.h"
 #include "fmc.h"
 #include "app_touchgfx.h"
@@ -107,11 +108,12 @@ int main(void)
   MX_LTDC_Init();
   MX_SDIO_SD_Init();
   MX_FATFS_Init();
+  MX_TIM2_Init();
   MX_TouchGFX_Init();
   /* Call PreOsInit function */
   MX_TouchGFX_PreOSInit();
   /* USER CODE BEGIN 2 */
-	HAL_GPIO_WritePin(LCD_BL_GPIO_Port, LCD_BL_Pin, GPIO_PIN_SET);		// turn on LCD backlight
+
   /* USER CODE END 2 */
 
   /* Init scheduler */

@@ -8,10 +8,22 @@
             "Type": "Image",
             "Name": "image1",
             "X": 120,
-            "Y": 280,
+            "Y": 100,
             "Width": 240,
             "Height": 240,
             "RelativeFilename": "__generated\\alternate_theme_images_backgrounds_240x240_puzzle.png"
+          },
+          {
+            "Type": "Box",
+            "Name": "box1",
+            "X": 120,
+            "Y": 460,
+            "Width": 240,
+            "Height": 240,
+            "Color": {
+              "Green": 99,
+              "Blue": 71
+            }
           }
         ],
         "Interactions": []

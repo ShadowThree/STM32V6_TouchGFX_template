@@ -23,11 +23,23 @@
 #include <TouchGFXHAL.hpp>
 
 /* USER CODE BEGIN TouchGFXHAL.cpp */
+extern "C" {
+#include "dbger.h"
+#include "fatfs_file_handler.h"
+
+extern StoreDisk_t sDisk[_VOLUMES];
+}
 
 using namespace touchgfx;
 
 void TouchGFXHAL::initialize()
 {
+#ifndef SIMULATOR
+       // the following value calculated method can refer setFrameBufferStartAddresses()
+       uint16_t* cacheStartAddr = (uint16_t*)(0xC0000000 + 800*480*2*3);	// 2 is mean 16bit=2Bytes; 3 is mean FrameBuffer1, FrameBuffer2 and AnimationBuffer(maybe no need)
+       uint32_t cacheSize = 16*1024*1024 - (800*480*2*3);					// 16MB(SDRAM size) - cacheStartAddr
+#endif
+	
     // Calling parent implementation of initialize().
     //
     // To overwrite the generated implementation, omit call to parent function
@@ -35,6 +47,11 @@ void TouchGFXHAL::initialize()
     // Please note, HAL::initialize() must be called to initialize the framework.
 
     TouchGFXGeneratedHAL::initialize();
+	
+#ifndef SIMULATOR
+       touchgfx::Bitmap::removeCache();
+       touchgfx::Bitmap::setCache(cacheStartAddr, cacheSize, 128);             // 128 may can be 0
+#endif
 }
 
 /**
@@ -91,7 +108,27 @@ void TouchGFXHAL::flushFrameBuffer(const touchgfx::Rect& rect)
 
 bool TouchGFXHAL::blockCopy(void* RESTRICT dest, const void* RESTRICT src, uint32_t numBytes)
 {
-    return TouchGFXGeneratedHAL::blockCopy(dest, src, numBytes);
+#ifdef SIMULATOR
+       return TouchGFXGeneratedHAL::blockCopy(dest, src, numBytes);
+#else
+       if ((uint32_t)src >= 0x70000000 && (uint32_t)src < 0x78000000)
+       {
+               LOG_DBG((char*)"read %d bytes at 0x%08x\n", numBytes, (uint32_t)src);
+               uint32_t offset = (uint32_t)src - 0x70000000;
+               FH_mount(&sDisk[0]);
+               FRESULT res = FH_read_bin(&sDisk[0], (char*)"IMAGE/images.bin", offset, numBytes, (uint8_t*)dest);
+               FH_unmount(&sDisk[0]);
+               if(res == FR_OK) {
+                       return true;
+               } else {
+                       LOG_ERR("read %d bytes at 0x%08x err[%d]\n", numBytes, (uint32_t)src, res);
+                       return false;
+               }
+       } else {
+               LOG_DBG((char*)"read %d bytes at 0x%08x", numBytes, (uint32_t)src);
+               return TouchGFXGeneratedHAL::blockCopy(dest, src, numBytes);
+       }
+#endif
 }
 
 /**

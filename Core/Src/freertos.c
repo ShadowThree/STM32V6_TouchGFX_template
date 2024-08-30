@@ -53,6 +53,8 @@ StoreDisk_t sDisk[_VOLUMES] = {
 	{SDPath, 	&SDFatFS, 	&SDFile, 	FM_FAT32, 0},		// SDcard disk
 	//{USERPath, 	&USERFatFS, &USERFile, 	FM_FAT,   0}		// SpiFlash disk
 };
+
+extern TIM_HandleTypeDef htim2;
 /* USER CODE END Variables */
 /* Definitions for TouchGFX */
 osThreadId_t TouchGFXHandle;
@@ -163,10 +165,14 @@ __weak void cmd_process_Task(void *argument)
 	FH_mount(&sDisk[0]);
 	FH_scan(&sDisk[0], NULL);
 	MX_USB_DEVICE_Init();
+	
+	osDelay(1000);	// wait for screen be stable
+	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+	__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 100);
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	  osDelay(1);
   }
   /* USER CODE END cmd_process_Task */
 }

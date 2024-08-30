@@ -7,6 +7,7 @@ Screen1View::Screen1View()
 
 void Screen1View::setupScreen()
 {
+	Bitmap::cacheAll();
     Screen1ViewBase::setupScreen();
 }
 
