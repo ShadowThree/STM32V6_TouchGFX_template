@@ -27,6 +27,8 @@
 /* USER CODE BEGIN Includes */
 #include "dbger.h"
 #include "gt911.h"
+#include "usb_device.h"
+#include "fatfs_file_handler.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,7 +48,11 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+StoreDisk_t sDisk[_VOLUMES] = {
+	// path       FATFS       FIL        opt     mCnt
+	{SDPath, 	&SDFatFS, 	&SDFile, 	FM_FAT32, 0},		// SDcard disk
+	//{USERPath, 	&USERFatFS, &USERFile, 	FM_FAT,   0}		// SpiFlash disk
+};
 /* USER CODE END Variables */
 /* Definitions for TouchGFX */
 osThreadId_t TouchGFXHandle;
@@ -153,6 +159,10 @@ __weak void cmd_process_Task(void *argument)
 		LOG_DBG("GT911 init OK\n");
 		HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);		// delete it if GT911 is NOT work in interrupt mode;
 	}
+	
+	FH_mount(&sDisk[0]);
+	FH_scan(&sDisk[0], NULL);
+	MX_USB_DEVICE_Init();
   /* Infinite loop */
   for(;;)
   {

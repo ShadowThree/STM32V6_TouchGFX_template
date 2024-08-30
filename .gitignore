@@ -2,4 +2,6 @@ MDK-ARM/STM32V6_touchGFX_template/*
 MDK-ARM/JLinkLog.txt
 MDK-ARM/JLinkSettings.ini
 MDK-ARM/*.uvguix.*
+MDK-ARM/Image_Bin/*
 Middlewares/*
+MDK-ARM/RTE/_STM32V6_touchGFX_template/RTE_Components.h

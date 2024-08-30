@@ -1,0 +1,6 @@
+[submodule "ThirdUtils/fatfs_file_handler"]
+	path = ThirdUtils/fatfs_file_handler
+	url = https://github.com/ShadowThree/fatfs_file_handler
+[submodule "ThirdUtils/dbger"]
+	path = ThirdUtils/dbger
+	url = https://github.com/ShadowThree/dbger
