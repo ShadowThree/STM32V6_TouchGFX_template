@@ -55,6 +55,7 @@ StoreDisk_t sDisk[_VOLUMES] = {
 };
 
 extern TIM_HandleTypeDef htim2;
+extern LTDC_HandleTypeDef hltdc;
 /* USER CODE END Variables */
 /* Definitions for TouchGFX */
 osThreadId_t TouchGFXHandle;
@@ -69,6 +70,11 @@ const osThreadAttr_t cmd_process_attributes = {
   .name = "cmd_process",
   .stack_size = 1024 * 4,
   .priority = (osPriority_t) osPriorityAboveNormal,
+};
+/* Definitions for semGetPoint */
+osSemaphoreId_t semGetPointHandle;
+const osSemaphoreAttr_t semGetPoint_attributes = {
+  .name = "semGetPoint"
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -94,6 +100,10 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
+
+  /* Create the semaphores(s) */
+  /* creation of semGetPoint */
+  semGetPointHandle = osSemaphoreNew(1, 0, &semGetPoint_attributes);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
@@ -173,6 +183,12 @@ __weak void cmd_process_Task(void *argument)
   for(;;)
   {
 	  osDelay(1);
+	  
+//	  osDelay(1000);
+//	  HAL_LTDC_SetAlpha(&hltdc, 0, LTDC_LAYER_2);
+//	  osDelay(1000);
+//	  HAL_LTDC_SetAlpha(&hltdc, 255, LTDC_LAYER_2);
+	  
   }
   /* USER CODE END cmd_process_Task */
 }

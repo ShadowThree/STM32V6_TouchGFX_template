@@ -57,6 +57,14 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LTDC_L1_ADDR (LTDC_L0_ADDR + LTDC_L0_WIDTH * LTDC_L0_HEIGHT * 2 * 2)
+#define LTDC_L1_WIDTH 300
+#define LTDC_L1_START_X 430
+#define LTDC_L0_WIDTH 800
+#define LTDC_L0_ADDR 0xC0000000
+#define LTDC_L1_START_Y 90
+#define LTDC_L0_HEIGHT 480
+#define LTDC_L1_HEIGHT 300
 #define TP_INT_Pin GPIO_PIN_7
 #define TP_INT_GPIO_Port GPIOH
 #define TP_INT_EXTI_IRQn EXTI9_5_IRQn

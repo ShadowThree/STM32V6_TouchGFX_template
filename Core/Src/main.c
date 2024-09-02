@@ -113,7 +113,7 @@ int main(void)
   /* Call PreOsInit function */
   MX_TouchGFX_PreOSInit();
   /* USER CODE BEGIN 2 */
-
+	memset((void*)LTDC_L1_ADDR, 0xFF, LTDC_L1_WIDTH * LTDC_L1_HEIGHT);
   /* USER CODE END 2 */
 
   /* Init scheduler */
