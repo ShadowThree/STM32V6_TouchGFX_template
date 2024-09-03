@@ -67,7 +67,6 @@ void Error_Handler(void);
 #define LTDC_L1_HEIGHT 300
 #define TP_INT_Pin GPIO_PIN_7
 #define TP_INT_GPIO_Port GPIOH
-#define TP_INT_EXTI_IRQn EXTI9_5_IRQn
 #define TP_SCL_Pin GPIO_PIN_6
 #define TP_SCL_GPIO_Port GPIOB
 #define TP_SDA_Pin GPIO_PIN_9

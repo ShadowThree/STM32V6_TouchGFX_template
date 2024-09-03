@@ -80,9 +80,9 @@
             <nStopB2X>0</nStopB2X>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>1</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>make_image_bin.bat @L</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F429xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../TouchGFX/App;../TouchGFX/target/generated;../TouchGFX/target;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/STM32F4xx_HAL_Driver/Inc;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Middlewares/Third_Party/FreeRTOS/Source/include;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/CMSIS/Include;../ThirdUtils/dbger;../ThirdUtils/gt911;../ThirdUtils/sdram;../FATFS/Target;../FATFS/App;../USB_DEVICE/App;../USB_DEVICE/Target;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Middlewares/Third_Party/FatFs/src;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Middlewares/ST/STM32_USB_Device_Library/Core/Inc;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Middlewares/ST/STM32_USB_Device_Library/Class/MSC/Inc;../ThirdUtils/fatfs_file_handler;../middlewares/st/touchgfx/framework/include;../touchgfx/generated/fonts/include;../touchgfx/generated/gui_generated/include;../touchgfx/generated/images/include;../touchgfx/generated/texts/include;../touchgfx/generated/videos/include;../touchgfx/gui/include</IncludePath>
+              <IncludePath>../Core/Inc;../TouchGFX/App;../TouchGFX/target/generated;../TouchGFX/target;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/STM32F4xx_HAL_Driver/Inc;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Middlewares/Third_Party/FreeRTOS/Source/include;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Drivers/CMSIS/Include;../ThirdUtils/dbger;../ThirdUtils/gt911;../ThirdUtils/sdram;../FATFS/Target;../FATFS/App;../USB_DEVICE/App;../USB_DEVICE/Target;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Middlewares/Third_Party/FatFs/src;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Middlewares/ST/STM32_USB_Device_Library/Core/Inc;C:/Users/dengjunde/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.0/Middlewares/ST/STM32_USB_Device_Library/Class/MSC/Inc;../ThirdUtils/fatfs_file_handler;../ThirdUtils/hand_write_lib;../middlewares/st/touchgfx/framework/include;../touchgfx/generated/fonts/include;../touchgfx/generated/gui_generated/include;../touchgfx/generated/images/include;../touchgfx/generated/texts/include;../touchgfx/generated/videos/include;../touchgfx/gui/include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1177,6 +1177,16 @@
               <FileType>1</FileType>
               <FilePath>..\ThirdUtils\fatfs_file_handler\fatfs_file_handler.c</FilePath>
             </File>
+            <File>
+              <FileName>atk_ncr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\ThirdUtils\hand_write_lib\atk_ncr.c</FilePath>
+            </File>
+            <File>
+              <FileName>ATKNCR_M_V2.0.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>..\ThirdUtils\hand_write_lib\ATKNCR_M_V2.0.lib</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1258,19 +1268,14 @@
               <FilePath>../touchgfx/generated/images/src/__generated/image_alternate_theme_images_backgrounds_240x240_puzzle.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_alternate_theme_images_widgets_button_regular_height_50_medium_round_action.cpp</FileName>
+              <FileName>image_alternate_theme_images_widgets_button_regular_height_50_tiny_round_action.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>../touchgfx/generated/images/src/__generated/image_alternate_theme_images_widgets_button_regular_height_50_medium_round_action.cpp</FilePath>
+              <FilePath>../touchgfx/generated/images/src/__generated/image_alternate_theme_images_widgets_button_regular_height_50_tiny_round_action.cpp</FilePath>
             </File>
             <File>
-              <FileName>image_alternate_theme_images_widgets_button_regular_height_50_medium_round_active.cpp</FileName>
+              <FileName>image_alternate_theme_images_widgets_button_regular_height_50_tiny_round_active.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>../touchgfx/generated/images/src/__generated/image_alternate_theme_images_widgets_button_regular_height_50_medium_round_active.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>image_icon_theme_images_action_done_50_50_E8F6FB.svg.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>../touchgfx/generated/images/src/__generated/image_icon_theme_images_action_done_50_50_e8f6fb.svg.cpp</FilePath>
+              <FilePath>../touchgfx/generated/images/src/__generated/image_alternate_theme_images_widgets_button_regular_height_50_tiny_round_active.cpp</FilePath>
             </File>
             <File>
               <FileName>Kerning_verdana_10_4bpp.cpp</FileName>
