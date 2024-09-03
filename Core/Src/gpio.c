@@ -79,6 +79,8 @@ void MX_GPIO_Init(void)
 //#include "dbger.h"
 #include "gpio.h"
 #include "gt911.h"
+#include "dbger.h"
+#define INT_DBG	LOG_DBG
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	if(GPIO_Pin == TP_INT_Pin) {

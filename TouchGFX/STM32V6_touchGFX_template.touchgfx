@@ -24,9 +24,37 @@
               "Green": 99,
               "Blue": 71
             }
+          },
+          {
+            "Type": "ButtonWithIcon",
+            "Name": "buttonWithIcon1",
+            "X": 120,
+            "Y": 24,
+            "Width": 240,
+            "Height": 50,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_medium_round_action.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_medium_round_active.png",
+            "IconPressed": "__generated\\icon_theme_images_action_done_50_50_E8F6FB.svg.png",
+            "IconReleased": "__generated\\icon_theme_images_action_done_50_50_E8F6FB.svg.png",
+            "IconX": 97,
+            "IconHeight": 50,
+            "IconWidth": 50
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonWithIcon1"
+            },
+            "Action": {
+              "Type": "ActionExecuteCode",
+              "Includes": "#ifdef SIMULATOR\r\n#include <touchgfx/Utils.hpp>\r\n#else\r\n#include \"dbger.h\"\r\n#endif",
+              "Code": "#ifdef SIMULATOR\r\ntouchgfx_printf(\"btn click\\n\");\r\n#else\r\nLOG_DBG(\"btn click\\n\");\r\n#endif"
+            }
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [],

@@ -46,7 +46,6 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
      *
      */
     if(num_touched) {
-			num_touched = 0;
 			x = touch_coordinate[0].x;
 			y = touch_coordinate[0].y;
 			return true;
